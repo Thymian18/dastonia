@@ -1,0 +1,271 @@
+/* =========================================================
+   Dastonia — structural CSS, mobile-first
+   No final visual design yet — this is the responsive
+   skeleton. Swap colors/fonts/imagery once the band's
+   visual identity is ready.
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+/* Respect users who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   HEADER / NAV
+   ========================================================= */
+
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  z-index: 100;
+}
+
+.logo-placeholder {
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+}
+
+/* Hamburger button — only shown on small screens */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #222;
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Animate to an "X" when nav is open */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav: full-width dropdown, hidden by default */
+nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+nav.open {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1.25rem 1rem;
+}
+
+nav li {
+  border-bottom: 1px solid #eee;
+}
+
+nav li:last-child {
+  border-bottom: none;
+}
+
+nav a {
+  display: block;
+  padding: 0.85rem 0.25rem;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.05rem;
+}
+
+/* Highlight active nav item (basic scroll-spy via JS) */
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+section {
+  min-height: 100vh;
+  padding: 3rem 1.25rem;
+  border-bottom: 1px dashed #ddd;
+  scroll-margin-top: 70px; /* keeps headings clear of the sticky header when jumping via nav */
+}
+
+section h1 {
+  font-size: clamp(2rem, 1.4rem + 4vw, 4rem);
+  margin: 0 0 0.5rem;
+}
+
+section h2 {
+  margin-top: 0;
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+}
+
+.placeholder {
+  border: 2px dashed #aaa;
+  padding: 2rem;
+  text-align: center;
+  color: #888;
+  margin: 1rem 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid .placeholder {
+  aspect-ratio: 1 / 1;
+}
+
+#show-list {
+  list-style: none;
+  padding: 0;
+}
+
+#show-list li {
+  margin-bottom: 0.75rem;
+}
+
+#newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 420px;
+}
+
+#newsletter-form input {
+  flex: 1 1 200px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#newsletter-form button {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+footer {
+  padding: 2rem 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* =========================================================
+   BREAKPOINTS — mobile-first: base styles above are mobile,
+   larger screens get the horizontal nav + roomier spacing.
+   ========================================================= */
+
+@media (min-width: 768px) {
+  header {
+    padding: 1rem 2rem;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  nav {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    border-bottom: none;
+    background: transparent;
+    width: auto;
+  }
+
+  nav ul {
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  nav li {
+    border-bottom: none;
+  }
+
+  nav a {
+    padding: 0.25rem 0;
+  }
+
+  section {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  section {
+    padding: 5rem 3rem;
+  }
+}
