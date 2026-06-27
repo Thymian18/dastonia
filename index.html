@@ -1,108 +1,44 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dastonia</title>
 
-  <style>
-    /* ===== Minimal structural CSS only — no design/styling yet ===== */
+  <!-- ===== SEO / sharing essentials ===== -->
+  <meta name="description" content="Dastonia — metal band from Bern, Switzerland. Original songs, modern sound. Music, shows, photos & contact.">
 
-    html {
-      scroll-behavior: smooth;
-    }
+  <!-- Open Graph (Instagram/Discord/Facebook link previews) -->
+  <meta property="og:title" content="Dastonia">
+  <meta property="og:description" content="Metal band from Bern, Switzerland. Original songs, modern sound.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.dastonia.com">
+  <meta property="og:image" content="https://www.dastonia.com/assets/og-image.jpg">
 
-    * {
-      box-sizing: border-box;
-    }
+  <!-- Twitter/X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dastonia">
+  <meta name="twitter:description" content="Metal band from Bern, Switzerland. Original songs, modern sound.">
+  <meta name="twitter:image" content="https://www.dastonia.com/assets/og-image.jpg">
 
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
+  <!-- Favicon — replace these files in /assets/ with real band artwork -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/favicon-180.png">
 
-    /* Fixed nav bar */
-    header {
-      position: sticky;
-      top: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #ccc;
-      background: #fff;
-      z-index: 100;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Highlight active nav item (basic scroll-spy via JS below) */
-    nav a.active {
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    /* Each section takes at least full viewport height so scrolling
-       between nav items feels deliberate; adjust later with real design */
-    section {
-      min-height: 100vh;
-      padding: 4rem 2rem;
-      border-bottom: 1px dashed #ddd;
-    }
-
-    section h2 {
-      margin-top: 0;
-    }
-
-    .placeholder {
-      border: 2px dashed #aaa;
-      padding: 2rem;
-      text-align: center;
-      color: #888;
-      margin: 1rem 0;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-    }
-
-    .gallery-grid .placeholder {
-      aspect-ratio: 1 / 1;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      list-style: none;
-      padding: 0;
-    }
-
-    footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- ============ NAVIGATION ============ -->
   <header>
     <div class="logo-placeholder">DASTONIA</div>
+
+    <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <nav>
       <ul id="nav-list">
         <li><a href="#home">Home</a></li>
@@ -122,34 +58,33 @@
     <!-- ============ HERO / HOME ============ -->
     <section id="home">
       <h1>DASTONIA</h1>
-      <p>[Tagline / Genre-Claim, z.B. "Metalcore aus Bern"]</p>
-      <div class="placeholder">Bandfoto Placeholder</div>
+      <p>Metalcore from Bern</p>
+      <div class="placeholder">Band photo placeholder</div>
     </section>
 
     <!-- ============ ABOUT ============ -->
     <section id="about">
       <h2>About</h2>
       <p>
-        [Kurze Bandbiografie — 2–3 Absätze: Gründung, Sound, Mission/Vibe der Band]
+        Dastonia is a metal band from Bern, Switzerland, writing original music that fuses heavy, technical riffs with soaring melodic vocals. Influenced by acts like Spiritbox, Architects, Bad Omens, Bring Me The Horizon, Periphery, and Currents, Dastonia is carving its own space in the modern metal scene.
       </p>
     </section>
 
     <!-- ============ MUSIC ============ -->
     <section id="music">
       <h2>Music</h2>
-      <div class="placeholder">Spotify Embed Placeholder</div>
-      <div class="placeholder">Bandcamp Embed Placeholder</div>
-      <div class="placeholder">YouTube Musikvideo Embed Placeholder</div>
+      <div class="placeholder">Spotify embed placeholder</div>
+      <div class="placeholder">YouTube music video embed placeholder</div>
     </section>
 
     <!-- ============ TOUR / SHOWS ============ -->
     <section id="live">
       <h2>Live</h2>
       <ul id="show-list">
-        <li class="placeholder">[Datum] — [Venue, Stadt] — [Ticket-Link Placeholder]</li>
-        <li class="placeholder">[Datum] — [Venue, Stadt] — [Ticket-Link Placeholder]</li>
+        <li class="placeholder">[Date] — [Venue, City] — [Ticket link placeholder]</li>
+        <li class="placeholder">[Date] — [Venue, City] — [Ticket link placeholder]</li>
       </ul>
-      <!-- Fallback falls aktuell keine Shows: -->
+      <!-- Fallback if there are currently no shows: -->
       <!-- <p>Currently no shows booked — stay tuned.</p> -->
     </section>
 
@@ -157,30 +92,30 @@
     <section id="photos">
       <h2>Photos</h2>
       <div class="gallery-grid">
-        <div class="placeholder">Foto 1</div>
-        <div class="placeholder">Foto 2</div>
-        <div class="placeholder">Foto 3</div>
-        <div class="placeholder">Foto 4</div>
+        <div class="placeholder">Photo 1</div>
+        <div class="placeholder">Photo 2</div>
+        <div class="placeholder">Photo 3</div>
+        <div class="placeholder">Photo 4</div>
       </div>
     </section>
 
     <!-- ============ TECH INFO ============ -->
     <section id="tech">
       <h2>Tech Info</h2>
-      <p>[Kurzer Hinweistext für Booker]</p>
+      <p>[Short note for bookers/sound engineers]</p>
       <div class="placeholder">
-        Download Tech Rider — Placeholder-Link
+        Download tech rider — placeholder link
       </div>
-      <p>Enthält: Technical Rider, Patchliste, etc.</p>
+      <p>Includes: technical rider, patch list, etc.</p>
     </section>
 
     <!-- ============ NEWSLETTER ============ -->
     <section id="newsletter">
       <h2>Newsletter</h2>
-      <p>[Kurzer Anreiz-Text, z.B. "Bleib auf dem Laufenden über neue Releases & Shows"]</p>
+      <p>[Short incentive text, e.g. "Stay up to date on new releases & shows"]</p>
       <form id="newsletter-form" action="#" method="post">
-        <!-- Placeholder: später z.B. Mailchimp/Substack-Embed-Action einsetzen -->
-        <input type="email" name="email" placeholder="deine@email.com" required>
+        <!-- Placeholder: later, e.g. Mailchimp/Substack embed action -->
+        <input type="email" name="email" placeholder="your@email.com" required>
         <button type="submit">Sign up</button>
       </form>
     </section>
@@ -195,8 +130,7 @@
         <li class="placeholder">Instagram</li>
         <li class="placeholder">YouTube</li>
         <li class="placeholder">TikTok</li>
-        <li class="placeholder">Spotify</li>
-        <li class="placeholder">Bandcamp</li>
+        <!-- <li class="placeholder">Spotify</li> -->
       </ul>
     </section>
 
@@ -206,27 +140,7 @@
     &copy; <span id="year"></span> Dastonia. All rights reserved.
   </footer>
 
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ===== Basic scroll-spy: highlight active nav link based on visible section =====
-    const sections = document.querySelectorAll('main section');
-    const navLinks = document.querySelectorAll('#nav-list a');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
-        }
-      });
-    }, { threshold: 0.5 });
-
-    sections.forEach(section => observer.observe(section));
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
