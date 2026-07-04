@@ -46,15 +46,21 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  /* background: var(--bg); */
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
   /* faint purple glow at top, fades to pure black at bottom */
-  background-image:
+  /* background-image:
     radial-gradient(ellipse 70% 50% at 50% -5%, rgba(155, 92, 246, 0.12), transparent),
     radial-gradient(ellipse 50% 40% at 0% 100%, rgba(155, 92, 246, 0.05), transparent);
-  background-attachment: fixed;
+  background-attachment: fixed; */
+
+  background-image: url('assets/images/background1.png');
+  background-size: cover;       /* füllt den ganzen Bildschirm */
+  background-position: center;  /* zentriert */
+  background-attachment: fixed; /* Parallax-Effekt beim Scrollen */
+  background-repeat: no-repeat;
 }
 
 @media (prefers-reduced-motion: reduce) {
