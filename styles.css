@@ -425,6 +425,10 @@ section p {
 }
 
 footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
   padding: 2rem 1.25rem;
   text-align: center;
   font-family: var(--font-mono);
@@ -432,6 +436,42 @@ footer {
   color: var(--muted);
   background: var(--bg);
   border-top: 1px solid var(--border);
+}
+
+.footer-socials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-socials li {
+  display: flex;
+  list-style: none;
+}
+
+.footer-socials a {
+  display: flex;
+  color: var(--muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+  color: var(--bright);
+  transform: translateY(-3px);
+}
+
+.footer-socials svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-copy {
+  margin: 0;
 }
 
 /* Keyboard focus */
