@@ -4,7 +4,15 @@
       "PowerShell($paths = @\\(\"$env:ProgramFiles\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\",\"${env:ProgramFiles\\(x86\\)}\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\",\"$env:ProgramFiles\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\",\"${env:ProgramFiles\\(x86\\)}\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\"\\); foreach \\($p in $paths\\) { if \\(Test-Path $p\\) { $p } })",
       "Read(//c/Users/Damian Kopp/AppData/Local/Temp/**)",
       "Read(//c/Users/Damian Kopp/AppData/Local/Temp/epkprev/**)",
-      "Read(//c/Users/Damian Kopp/AppData/Local/Temp/epkweb/**)"
+      "Read(//c/Users/Damian Kopp/AppData/Local/Temp/epkweb/**)",
+      "Read(//c/Users/Damian Kopp/AppData/Local/Temp/claude/c--Users-Damian-Kopp-Documents-Projects-dastonia/c167edc8-6f46-4951-afae-c22106daf460/scratchpad/**)",
+      "Read(//c/Users/Damian Kopp/AppData/Local/Temp/mainsite/**)",
+      "Bash(cp '/c/Users/Damian Kopp/Documents/Projects/dastonia/epk.html' 'C:\\\\Users\\\\Damian Kopp/AppData/Local/Temp/epkweb/hover_test.html')",
+      "Bash(sed -i 's/id=\"download-pdf-btn\">/id=\"download-pdf-btn\" style=\"display:none\">/' 'C:\\\\Users\\\\Damian Kopp/AppData/Local/Temp/epkweb/hover_test.html')",
+      "Bash(sed -i 's/class=\"glitch\" data-text=\"DASTONIA\">DASTONIA</h1>/class=\"glitch force-hover\" data-text=\"DASTONIA\">DASTONIA<\\\\/h1>/' 'C:\\\\Users\\\\Damian Kopp/AppData/Local/Temp/epkweb/hover_test.html')",
+      "Bash(cat)",
+      "Bash(echo done *)",
+      "Read(//c/Users/Damian Kopp/AppData/Local/Temp/epknav/**)"
     ]
   }
 }

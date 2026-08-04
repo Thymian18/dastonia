@@ -1,7 +1,35 @@
-// Dastonia EPK — bio expand/collapse + footer year
+// Dastonia EPK — nav hamburger + bio expand/collapse + footer year
 document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ===== Hamburger menu toggle (mobile nav) — mirrors the home page =====
+  const navToggle = document.getElementById('nav-toggle');
+  const navEl = document.querySelector('header nav');
+  const navList = document.getElementById('nav-list');
+
+  if (navToggle && navEl && navList) {
+    const closeNav = () => {
+      navEl.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    };
+    const openNav = () => {
+      navEl.classList.add('open');
+      navToggle.setAttribute('aria-expanded', 'true');
+    };
+
+    navToggle.addEventListener('click', () => {
+      navEl.classList.contains('open') ? closeNav() : openNav();
+    });
+
+    navList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeNav);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) closeNav();
+    });
+  }
 
   const toggle = document.querySelector('.bio-toggle');
   const longBio = document.getElementById('bio-long');

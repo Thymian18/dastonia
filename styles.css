@@ -27,6 +27,8 @@
   --text: #F0EEF5;
   --muted: #7A778A;
   --signal: #9B5CF6;
+  --accent: #a855f7;      /* violet — swap for your locked brand accent */
+  --accent-dim: #7c3aed;
   --bright: #C4A8FF;
   --border: #1E1B2E;
 
@@ -192,16 +194,28 @@ nav a.active {
    ========================================================= */
 
 .fracture {
-  height: 14px;
-  /* pure purple → white-purple shimmer */
-  background: linear-gradient(90deg, var(--signal), var(--bright), #ffffff, var(--bright), var(--signal));
-  background-size: 200% 100%;
-  clip-path: polygon(
-    0% 100%, 4% 0%, 9% 100%, 14% 10%, 19% 100%, 24% 0%, 29% 100%,
-    34% 5%, 39% 100%, 44% 0%, 49% 100%, 54% 15%, 59% 100%, 64% 0%,
-    69% 100%, 74% 5%, 79% 100%, 84% 0%, 89% 100%, 94% 10%, 100% 100%, 100% 0%, 0% 0%
-  );
-  opacity: 0.85;
+  position: relative;
+  height: 3px;
+  /* margin: 0 2rem; */
+  /* Plain, unclipped rectangle — this is what actually blocks the page's
+     fixed background image. The zigzag clip-path below doesn't just
+     shape the bar's edge, it cuts real transparent notches through
+     whatever it's applied to; putting it here too would leave those
+     notches see-through again. */
+  background: var(--bg);
+}
+
+/* Accent tint, clipped to the jagged fracture shape, layered on top of
+   the solid rect above. Matches the flattened look the EPK page gets
+   for free (its page background is a solid color, not an image). */
+.fracture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  opacity: 0.6;
+  clip-path: polygon(0 0, 8% 100%, 16% 0, 24% 100%, 32% 0, 40% 100%, 48% 0,
+    56% 100%, 64% 0, 72% 100%, 80% 0, 88% 100%, 96% 0, 100% 100%, 100% 0, 0 0);
 }
 
 /* =========================================================
@@ -218,7 +232,8 @@ section {
 }
 
 #about,
-#contact {
+#contact,
+#impressum {
   background: var(--surface);
 }
 
@@ -259,6 +274,32 @@ section h2 {
 section p {
   max-width: 640px;
   color: var(--text);
+}
+
+/* Legal pages (Impressum, etc.) — long-form text, so it doesn't fill a
+   full 100vh section the way the other short sections do. */
+.legal {
+  min-height: auto;
+  justify-content: flex-start;
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+
+.legal h3 {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  color: var(--signal);
+  margin: 2rem 0 0.5rem;
+}
+
+.legal h3:first-of-type {
+  margin-top: 2.5rem;
+}
+
+.legal p {
+  line-height: 1.7;
 }
 
 /* Hero specifics */
