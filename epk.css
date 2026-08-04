@@ -1,0 +1,496 @@
+/* ==========================================================================
+   Dastonia EPK — styled to match the existing site's design system:
+   near-black background, fracture dividers, glitch hover effects.
+   Unbounded (display) / Inter (body) / Space Mono (utility/data).
+
+   Merge these tokens with your existing stylesheet's :root variables
+   instead of duplicating them if you already define them globally.
+   ========================================================================== */
+
+:root {
+  --bg: #0a0a0c;
+  --bg-raised: #131316;
+  --fg: #f2f0ee;
+  --fg-muted: #9a9aa2;
+  --accent: #a855f7;      /* violet — swap for your locked brand accent */
+  --accent-dim: #7c3aed;
+  --line: #232327;
+
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+/* ============ NAV ============ */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.site-nav nav a {
+  margin-left: 1.75rem;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  transition: color 0.2s ease;
+}
+
+.site-nav nav a:hover,
+.site-nav nav a.is-active {
+  color: var(--accent);
+}
+
+/* ============ HERO ============ */
+.epk-hero {
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.epk-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  margin: 0;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+/* Glitch hover — mirrors the wordmark effect used site-wide */
+.glitch {
+  position: relative;
+  cursor: default;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.glitch:hover::before {
+  opacity: 0.8;
+  color: var(--accent);
+  transform: translate(-2px, 1px);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch-shift 0.3s steps(2) infinite;
+}
+
+.glitch:hover::after {
+  opacity: 0.8;
+  color: var(--accent-dim);
+  transform: translate(2px, -1px);
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  animation: glitch-shift 0.3s steps(2) infinite reverse;
+}
+
+@keyframes glitch-shift {
+  0%   { transform: translate(-2px, 1px); }
+  50%  { transform: translate(2px, -1px); }
+  100% { transform: translate(-1px, 2px); }
+}
+
+.hero-tagline {
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  margin-top: 1.25rem;
+  font-size: 1rem;
+}
+
+.hero-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Reset so <button>.btn matches <a>.btn instead of using the
+     browser's default light button face (near-white on near-white). */
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0a0a0c;
+  border-color: var(--accent);
+}
+
+.btn-primary:hover { background: var(--accent-dim); }
+
+.btn-ghost {
+  color: var(--fg);
+  border-color: var(--line);
+}
+
+.btn-ghost svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(168, 85, 247, 0.08);
+}
+
+/* ============ FRACTURE DIVIDER ============ */
+.fracture-divider {
+  height: 3px;
+  margin: 0 2rem;
+  background: var(--accent);
+  clip-path: polygon(0 0, 8% 100%, 16% 0, 24% 100%, 32% 0, 40% 100%, 48% 0,
+    56% 100%, 64% 0, 72% 100%, 80% 0, 88% 100%, 96% 0, 100% 100%, 100% 0, 0 0);
+  opacity: 0.6;
+}
+
+/* ============ SECTIONS ============ */
+.epk-section {
+  padding: 4rem 2rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.bio-short {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.bio-toggle {
+  margin-top: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.bio-toggle:hover { color: var(--accent); }
+
+.bio-toggle .arrow { transition: transform 0.2s ease; }
+.bio-toggle[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+
+.bio-long {
+  margin-top: 1.5rem;
+  color: var(--fg-muted);
+  border-left: 2px solid var(--line);
+  padding-left: 1.25rem;
+}
+
+/* ============ MUSIC ============ */
+.music-player {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  padding: 1.5rem;
+}
+
+.track-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  margin-top: 0;
+}
+
+.music-player audio {
+  width: 100%;
+  filter: invert(0.9) hue-rotate(180deg); /* dark-mode-friendly native controls */
+}
+
+.music-note {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  margin-top: 1rem;
+}
+
+/* ============ PRESS ASSETS ============ */
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.asset-card {
+  aspect-ratio: 4 / 3;
+  border: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--fg-muted);
+}
+
+.asset-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============ MEMBERS ============ */
+.member-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.member-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display);
+}
+
+.member-role {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============ CONTACT ============ */
+.contact-email {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+}
+
+.footer-socials {
+  margin-top: 1.5rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-socials svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  border-top: 1px solid var(--line);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 600px) {
+  .site-nav { flex-direction: column; gap: 1rem; }
+  .site-nav nav a { margin: 0 0.75rem; }
+  .epk-hero { padding: 4rem 1.25rem 3rem; }
+  .epk-section { padding: 3rem 1.25rem; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .glitch::before, .glitch::after, .bio-toggle .arrow {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   PRINT — used by the "Download PDF" button (window.print()).
+   Same content as the web EPK, laid out as its own compact two-column
+   grid instead of inheriting the single-column screen layout — that's
+   what makes one page realistic without cutting anything.
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.3cm 1.5cm;
+  }
+
+  html, body {
+    background: #fff;
+    color: #111;
+    font-size: 9.5pt;
+  }
+
+  .site-nav,
+  .hero-actions,
+  .fracture-divider,
+  .bio-toggle,
+  .music-player audio,
+  .asset-grid,
+  .site-footer {
+    display: none !important;
+  }
+
+  /* Layout: hero spans both columns; .print-col-left (Bio, Music) is the
+     left column; .print-col-right (Press Assets, Members) is the right
+     column; Contact follows underneath the right column. Each column is
+     a single grid item wrapping its sections, stacking naturally in DOM
+     order — no row-number guessing needed. */
+  main {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr;
+    column-gap: 1.4rem;
+    align-items: start;
+  }
+
+  .epk-hero {
+    grid-column: 1 / -1;
+    text-align: left;
+    padding: 0 0 0.5rem;
+    border-bottom: 1.5pt solid #6b21a8;
+    margin-bottom: 0.3rem;
+  }
+
+  .print-col-left { grid-column: 1; }
+  .print-col-right { grid-column: 2; }
+  #epk-contact { grid-column: 2; }
+
+  .glitch::before, .glitch::after { display: none; }
+
+  .epk-hero h1 { font-size: 20pt; margin: 0; }
+  .eyebrow { font-size: 7.5pt; color: #6b21a8; margin-bottom: 0.15rem; }
+  .hero-tagline { font-size: 9pt; color: #444; margin-top: 0.2rem; }
+
+  .bio-long {
+    display: block !important;
+    margin-top: 0.6rem;
+    border-left: 1.5pt solid #ddd;
+    padding-left: 0.6rem;
+  }
+
+  .epk-section {
+    max-width: 100%;
+    /* The screen rule centres sections with `margin: 0 auto`. On a direct
+       grid item (#epk-contact) auto margins suppress stretch, so the
+       section shrink-to-fits and sits centred in its column instead of
+       flush left. Reset it. */
+    margin: 0;
+    padding: 0.4rem 0;
+    page-break-inside: avoid;
+  }
+
+  .section-label { font-size: 7pt; color: #6b21a8; margin-bottom: 0.3rem; }
+  .bio-short { font-size: 9.5pt; line-height: 1.45; }
+  .bio-long p { font-size: 8.5pt; line-height: 1.4; color: #444; margin: 0; }
+
+  .music-player {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .track-title { font-size: 8.5pt; margin: 0; }
+  .music-note { font-size: 8pt; color: #555; margin-top: 0.2rem; }
+
+  .member-list { padding: 0; }
+  .member-list li {
+    border-bottom: none;
+    padding: 0.1rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9pt;
+  }
+  .member-role { font-size: 7.5pt; color: #666; }
+
+  .contact-email { font-size: 11pt; border-bottom-color: #6b21a8; }
+
+  #epk-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    margin-top: 0.4rem;
+  }
+
+  .footer-socials { margin-top: 0; }
+  .footer-socials a, .socials a { color: #444; }
+  .footer-socials svg { width: 15px; height: 15px; }
+}
