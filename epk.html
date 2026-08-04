@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dastonia — Press Kit</title>
+<meta name="description" content="Dastonia — Metalcore from Bern, Switzerland. Electronic press kit: bio, music, photos, and contact.">
+
+<!-- Fonts: matches existing dastonia.com type system -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="epk.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav">
+  <a href="index.html" class="nav-wordmark">DASTONIA</a>
+  <nav>
+    <a href="index.html#about">About</a>
+    <a href="epk.html" class="is-active">Press Kit</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="epk-hero">
+    <p class="eyebrow">Electronic Press Kit</p>
+    <h1 class="glitch" data-text="DASTONIA">DASTONIA</h1>
+    <p class="hero-tagline">Metalcore from Bern, Switzerland.</p>
+    <div class="hero-actions">
+      <a href="#music" class="btn btn-primary">Listen</a>
+      <button type="button" class="btn btn-ghost" id="download-pdf-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12"/>
+          <path d="M7 10l5 5 5-5"/>
+          <path d="M4 19h16"/>
+        </svg>
+        Download PDF
+      </button>
+    </div>
+  </section>
+
+  <div class="fracture-divider" aria-hidden="true"></div>
+
+  <!-- Wraps Bio + Music so the print stylesheet can place them as one
+       stacked left-hand column, aligned next to Press Assets/Members,
+       without guessing at row numbers. No effect on screen layout. -->
+  <div class="print-col-left">
+
+  <!-- ============ BIO ============ -->
+  <section class="epk-section" id="bio">
+    <p class="section-label">01 — Bio</p>
+
+    <p class="bio-short">
+      Dastonia is a Swiss metalcore band blending spherical, atmospheric textures with heavy guitars and powerful drums, 
+      balanced by emotional, fragile passages and modern, hip-hop-inspired elements. 
+      The sound sits close to acts like Future Palace, with influences including Spiritbox, Currents, and Architects.
+    </p>
+
+    <button class="bio-toggle" aria-expanded="false" aria-controls="bio-long">
+      Read full bio <span class="arrow">↓</span>
+    </button>
+
+    <div class="bio-long" id="bio-long" hidden>
+      <p>
+        Dastonia is a metalcore band based in Bern, Switzerland.
+        The lineup came together through the FindMyBand platform, with the singer and drummer connecting in December 2025 
+        and the full band completed after auditions in January 2026. 
+        Musically, Dastonia combines heavy, guitar-driven metalcore with spherical, atmospheric textures 
+        and emotional, fragile passages, woven together with modern elements such as hip-hop-inspired sections. 
+        The style sits close to bands like Future Palace, drawing further inspiration from artists such as 
+        Spiritbox, Currents, and Architects. The band is currently writing and producing its first songs, 
+        working toward five to six stage-ready tracks by the end of 2026 and a first run of live shows starting in 2027.
+      </p>
+    </div>
+  </section>
+
+  <div class="fracture-divider" aria-hidden="true"></div>
+
+  <!-- ============ MUSIC ============ -->
+  <section class="epk-section" id="music">
+    <p class="section-label">02 — Music</p>
+
+    <div class="music-player">
+      <p class="track-title">[Track title]</p>
+      <audio controls preload="none" src="assets/demo-track.mp3">
+        Your browser does not support the audio element.
+        <a href="assets/demo-track.mp3">Download the track</a>.
+      </audio>
+      <p class="music-note">Demo — full release coming soon.</p>
+    </div>
+
+    <!--
+      Once tracks are live on SoundCloud / mx3, replace the <audio> block above
+      with an embed, e.g.:
+
+      SoundCloud:
+      <iframe width="100%" height="166" scrolling="no" frameborder="no"
+        src="https://w.soundcloud.com/player/?url=YOUR_TRACK_URL&color=%23a855f7&auto_play=false">
+      </iframe>
+
+      mx3 tracks are typically linked out rather than embedded — link the
+      artist/track page directly if no embed player is available.
+    -->
+  </section>
+
+  </div> <!-- /.print-col-left -->
+
+  <div class="fracture-divider" aria-hidden="true"></div>
+
+  <!-- Wraps Press Assets + Members so the print stylesheet can place them
+       as one stacked right-hand column. No effect on screen layout. -->
+  <div class="print-col-right">
+
+  <!-- ============ PRESS ASSETS ============ -->
+  <section class="epk-section" id="press-assets">
+    <p class="section-label">03 — Press Assets</p>
+
+    <div class="asset-grid">
+      <div class="asset-card asset-placeholder">
+        <span class="asset-tag">Press Photo</span>
+        <p>Coming soon</p>
+      </div>
+      <div class="asset-card asset-placeholder">
+        <span class="asset-tag">Logo</span>
+        <p>Coming soon</p>
+      </div>
+    </div>
+    <p class="music-note">
+      High-res photos and logo files will be added here as soon as they're ready.
+    </p>
+
+    <!--
+      Once assets exist, replace a placeholder card with, e.g.:
+      <a class="asset-card" href="assets/dastonia-press-photo.jpg" download>
+        <img src="assets/dastonia-press-photo.jpg" alt="Dastonia press photo">
+        <span class="asset-tag">Press Photo — Download</span>
+      </a>
+    -->
+  </section>
+
+  <div class="fracture-divider" aria-hidden="true"></div>
+
+  <!-- ============ MEMBERS ============ -->
+  <section class="epk-section" id="members">
+    <p class="section-label">04 — Members</p>
+    <ul class="member-list">
+      <li><span class="member-name">Andrea Lisa Gartmann</span><span class="member-role">Vocals</span></li>
+      <li><span class="member-name">Sarusan Jegatheeswaran</span><span class="member-role">Guitar</span></li>
+      <li><span class="member-name">Thierry Léon Omar Beer</span><span class="member-role">Bass</span></li>
+      <li><span class="member-name">Damian Kopp</span><span class="member-role">Drums</span></li>
+    </ul>
+  </section>
+
+  </div> <!-- /.print-col-right -->
+
+  <div class="fracture-divider" aria-hidden="true"></div>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="epk-section" id="epk-contact">
+    <p class="section-label">05 — Contact</p>
+    <a class="contact-email" href="mailto:info@dastonia.com">info@dastonia.com</a>
+
+    <ul class="footer-socials socials">
+      <li>
+        <a href="https://www.instagram.com/dastoniaofficial" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </li>
+      <!-- <li>
+        <a href="https://www.youtube.com/@DEIN_HANDLE" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22.54 6.42A2.78 2.78 0 0 0 20.6 4.46C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29.94 29.94 0 0 0 1 12a29.94 29.94 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29.94 29.94 0 0 0 23 12a29.94 29.94 0 0 0-.46-5.58z"/>
+            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </li> -->
+      <li>
+        <a href="https://www.tiktok.com/@dastonia66" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Dastonia. All rights reserved.</p>
+</footer>
+
+<script src="epk.js"></script>
+</body>
+</html>
