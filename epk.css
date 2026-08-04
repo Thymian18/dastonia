@@ -14,9 +14,12 @@
   --fg-muted: #9a9aa2;
   --accent: #a855f7;      /* violet — swap for your locked brand accent */
   --accent-dim: #7c3aed;
+  --signal: #9B5CF6;      /* matches styles.css — used only by the DASTONIA wordmark glitch */
+  --bright: #C4A8FF;
   --line: #232327;
 
   --font-display: 'Unbounded', sans-serif;
+  --font-wordmark: 'Montserrat', system-ui, sans-serif; /* matches home page's DASTONIA treatment */
   --font-body: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
 }
@@ -34,37 +37,142 @@ body {
 
 a { color: inherit; }
 
-/* ============ NAV ============ */
+/* ============ NAV — ported from the home page header, same markup/
+   behavior (sticky, blurred, hamburger dropdown on mobile) ============ */
 .site-nav {
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1.1rem 1.25rem;
+  background: rgba(10, 10, 12, 0.88);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+  z-index: 100;
 }
 
 .nav-wordmark {
-  font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  font-family: var(--font-wordmark);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
+  color: var(--fg);
   text-decoration: none;
-  font-size: 1.1rem;
+}
+
+/* Hamburger button */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--fg);
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav: dropdown */
+.site-nav nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--line);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.site-nav nav.open {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.site-nav nav ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1.25rem 1rem;
+}
+
+.site-nav nav li {
+  border-bottom: 1px solid var(--line);
+}
+
+.site-nav nav li:last-child {
+  border-bottom: none;
 }
 
 .site-nav nav a {
-  margin-left: 1.75rem;
+  display: block;
+  padding: 0.85rem 0.1rem;
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--fg-muted);
-  transition: color 0.2s ease;
+  color: var(--fg);
+  transition: color 0.15s ease;
 }
 
-.site-nav nav a:hover,
-.site-nav nav a.is-active {
-  color: var(--accent);
+.site-nav nav a:hover {
+  color: var(--bright);
+}
+
+.site-nav nav a.active {
+  color: var(--signal);
+}
+
+@media (min-width: 768px) {
+  .site-nav {
+    padding: 1.1rem 2.5rem;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav nav {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    border-bottom: none;
+    background: transparent;
+    width: auto;
+  }
+
+  .site-nav nav ul {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .site-nav nav li {
+    border-bottom: none;
+  }
+
+  .site-nav nav a {
+    padding: 0.25rem 0;
+  }
 }
 
 /* ============ HERO ============ */
@@ -83,15 +191,23 @@ a { color: inherit; }
 }
 
 .epk-hero h1 {
-  font-family: var(--font-display);
-  font-weight: 900;
+  font-family: var(--font-wordmark);
+  font-weight: 800;
+  text-transform: uppercase;
   font-size: clamp(2.5rem, 8vw, 5.5rem);
+  line-height: 0.95;
   margin: 0;
   letter-spacing: 0.02em;
   position: relative;
+  /* subtle purple-to-white gradient on the big logotype — matches the
+     home page hero exactly */
+  background: linear-gradient(135deg, #ffffff 30%, var(--bright) 70%, var(--signal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Glitch hover — mirrors the wordmark effect used site-wide */
+/* Glitch hover — identical behavior to the home page hero wordmark */
 .glitch {
   position: relative;
   cursor: default;
@@ -103,28 +219,29 @@ a { color: inherit; }
   position: absolute;
   inset: 0;
   opacity: 0;
+  /* strip the gradient so the ghost layers are solid color */
+  background: none;
+  -webkit-text-fill-color: initial;
 }
 
 .glitch:hover::before {
-  opacity: 0.8;
-  color: var(--accent);
-  transform: translate(-2px, 1px);
-  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-  animation: glitch-shift 0.3s steps(2) infinite;
+  color: var(--signal);
+  transform: translate(2px, 0);
+  opacity: 0.6;
+  animation: glitch-shift 0.3s steps(2, end) infinite;
 }
 
 .glitch:hover::after {
-  opacity: 0.8;
-  color: var(--accent-dim);
-  transform: translate(2px, -1px);
-  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-  animation: glitch-shift 0.3s steps(2) infinite reverse;
+  color: #ffffff;
+  transform: translate(-2px, 0);
+  opacity: 0.5;
+  animation: glitch-shift 0.35s steps(2, end) infinite reverse;
 }
 
 @keyframes glitch-shift {
-  0%   { transform: translate(-2px, 1px); }
-  50%  { transform: translate(2px, -1px); }
-  100% { transform: translate(-1px, 2px); }
+  0%   { transform: translate(2px, 0); }
+  50%  { transform: translate(-1px, 1px); }
+  100% { transform: translate(2px, 0); }
 }
 
 .hero-tagline {
@@ -366,10 +483,19 @@ a { color: inherit; }
   border-top: 1px solid var(--line);
 }
 
+.site-footer a {
+  color: var(--fg-muted);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 600px) {
-  .site-nav { flex-direction: column; gap: 1rem; }
-  .site-nav nav a { margin: 0 0.75rem; }
   .epk-hero { padding: 4rem 1.25rem 3rem; }
   .epk-section { padding: 3rem 1.25rem; }
 }
@@ -436,7 +562,16 @@ a { color: inherit; }
 
   .glitch::before, .glitch::after { display: none; }
 
-  .epk-hero h1 { font-size: 20pt; margin: 0; }
+  .epk-hero h1 {
+    font-size: 20pt;
+    margin: 0;
+    /* the screen version fills the wordmark with a light gradient via
+       background-clip:text — on white paper that's near-invisible, so
+       flatten it back to solid dark text for print. */
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: #111;
+  }
   .eyebrow { font-size: 7.5pt; color: #6b21a8; margin-bottom: 0.15rem; }
   .hero-tagline { font-size: 9pt; color: #444; margin-top: 0.2rem; }
 

@@ -6,22 +6,36 @@
 <title>Dastonia — Press Kit</title>
 <meta name="description" content="Dastonia — Metalcore from Bern, Switzerland. Electronic press kit: bio, music, photos, and contact.">
 
+<!-- Favicon — replace these files in /assets/ with real band artwork -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+
 <!-- Fonts: matches existing dastonia.com type system -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Montserrat:wght@800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="epk.css">
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
+<!-- ============ NAV — ported from the home page header ============ -->
 <header class="site-nav">
   <a href="index.html" class="nav-wordmark">DASTONIA</a>
+
+  <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <nav>
-    <a href="index.html#about">About</a>
-    <a href="epk.html" class="is-active">Press Kit</a>
-    <a href="index.html#contact">Contact</a>
+    <ul id="nav-list">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="epk.html" class="active">EPK</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
   </nav>
 </header>
 
@@ -197,7 +211,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>&copy; <span id="year"></span> Dastonia. All rights reserved.</p>
+  <p>&copy; <span id="year"></span> Dastonia. All rights reserved. · <a href="impressum.html">Impressum</a></p>
 </footer>
 
 <script src="epk.js"></script>
