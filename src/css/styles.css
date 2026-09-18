@@ -78,118 +78,6 @@ a {
 }
 
 /* =========================================================
-   HEADER / NAV
-   ========================================================= */
-
-header {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.1rem 1.25rem;
-  background: rgba(8, 8, 10, 0.88);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-  z-index: 100;
-}
-
-.logo-placeholder {
-  font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
-  color: var(--text);
-}
-
-/* Hamburger button */
-.nav-toggle {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 36px;
-  height: 32px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.nav-toggle span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: var(--text);
-  border-radius: 1px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.nav-toggle[aria-expanded="true"] span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.nav-toggle[aria-expanded="true"] span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle[aria-expanded="true"] span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* Mobile nav: dropdown */
-nav {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #0B0B0F;
-  border-bottom: 1px solid var(--border);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease;
-}
-
-nav.open {
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-nav ul {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 1.25rem 1rem;
-}
-
-nav li {
-  border-bottom: 1px solid var(--border);
-}
-
-nav li:last-child {
-  border-bottom: none;
-}
-
-nav a {
-  display: block;
-  padding: 0.85rem 0.1rem;
-  text-decoration: none;
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: color 0.15s ease;
-}
-
-nav a:hover {
-  color: var(--bright);
-}
-
-nav a.active {
-  color: var(--signal);
-}
-
-/* =========================================================
    SIGNATURE — the fracture divider
    ========================================================= */
 
@@ -528,37 +416,6 @@ input:focus-visible {
    ========================================================= */
 
 @media (min-width: 768px) {
-  header {
-    padding: 1.1rem 2.5rem;
-  }
-
-  .nav-toggle {
-    display: none;
-  }
-
-  nav {
-    position: static;
-    max-height: none;
-    overflow: visible;
-    border-bottom: none;
-    background: transparent;
-    width: auto;
-  }
-
-  nav ul {
-    flex-direction: row;
-    gap: 2rem;
-    padding: 0;
-  }
-
-  nav li {
-    border-bottom: none;
-  }
-
-  nav a {
-    padding: 0.25rem 0;
-  }
-
   section {
     padding: 5rem 3rem;
   }
@@ -581,16 +438,16 @@ input:focus-visible {
   padding: 1.1rem 1.25rem;
   background: rgba(10, 10, 12, 0.88);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border);
   z-index: 100;
 }
 
 .nav-wordmark {
-  font-family: var(--font-wordmark);
+  font-family: var(--font-display);
   font-weight: 900;
   letter-spacing: 0.08em;
   font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
-  color: var(--fg);
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -612,7 +469,7 @@ input:focus-visible {
   display: block;
   height: 2px;
   width: 100%;
-  background: var(--fg);
+  background: var(--text);
   border-radius: 1px;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -627,8 +484,8 @@ input:focus-visible {
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--bg-raised);
-  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.25s ease;
@@ -648,7 +505,7 @@ input:focus-visible {
 }
 
 .site-nav nav li {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border);
 }
 
 .site-nav nav li:last-child {
@@ -663,7 +520,7 @@ input:focus-visible {
   font-size: 0.95rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--fg);
+  color: var(--text);
   transition: color 0.15s ease;
 }
 
