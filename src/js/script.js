@@ -1,51 +1,53 @@
 // ===== Footer year =====
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ===== Hamburger menu toggle (mobile nav) =====
-const navToggle = document.getElementById('nav-toggle');
-const navEl = document.querySelector('header nav');
-const navList = document.getElementById('nav-list');
+// ===== Hero glitch reveal (fires once on load) =====
+(function(){
+  var wordmark = document.getElementById('heroWordmark');
+  if (wordmark) wordmark.classList.add('run');
+})();
 
-function closeNav() {
-  navEl.classList.remove('open');
-  navToggle.setAttribute('aria-expanded', 'false');
-}
+// ===== Mobile nav toggle =====
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+  if (!toggle || !menu) return;
 
-function openNav() {
-  navEl.classList.add('open');
-  navToggle.setAttribute('aria-expanded', 'true');
-}
-
-navToggle.addEventListener('click', () => {
-  const isOpen = navEl.classList.contains('open');
-  isOpen ? closeNav() : openNav();
-});
-
-// Close the mobile menu after tapping a link
-navList.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', closeNav);
-});
-
-// Close the mobile menu if the viewport is resized up to desktop width
-window.addEventListener('resize', () => {
-  if (window.innerWidth >= 768) {
-    closeNav();
+  function close(){
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
   }
-});
 
-// ===== Basic scroll-spy: highlight active nav link based on visible section =====
-const sections = document.querySelectorAll('main section');
-const navLinks = document.querySelectorAll('#nav-list a');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-      });
-    }
+  toggle.addEventListener('click', function(){
+    var isOpen = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
-}, { threshold: 0.5 });
 
-sections.forEach(section => observer.observe(section));
+  menu.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') close();
+  });
+
+  window.addEventListener('resize', function(){
+    if (window.innerWidth > 720) close();
+  });
+})();
+
+// ===== Scroll-spy: highlight the active nav link based on visible section =====
+(function(){
+  var sections = document.querySelectorAll('main section[id]');
+  var navLinks = document.querySelectorAll('#navMenu a');
+  if (!sections.length || !navLinks.length) return;
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        var id = entry.target.getAttribute('id');
+        navLinks.forEach(function(link){
+          link.classList.toggle('active', link.getAttribute('href') === '/#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach(function(section){ observer.observe(section); });
+})();
