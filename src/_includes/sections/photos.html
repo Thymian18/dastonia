@@ -4,12 +4,11 @@
             <h2>Photos</h2>
         </div>
         <div class="photos-grid">
-            <div class="img-placeholder has-photo"><img src="/assets/images/group-01.jpg" alt="Dastonia band photo" loading="lazy"></div>
-            <div class="img-placeholder"><span>portrait-01.jpg</span></div>
-            <div class="img-placeholder"><span>portrait-02.jpg</span></div>
-            <div class="img-placeholder"><span>portrait-03.jpg</span></div>
-            <div class="img-placeholder"><span>group-02.jpg</span></div>
-            <div class="img-placeholder"><span>portrait-04.jpg</span></div>
+            {% for photo in galleryPhotos %}
+            <div class="img-placeholder has-photo">
+                {% galleryImage photo.src, photo.alt %}
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
