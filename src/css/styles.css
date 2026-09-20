@@ -14,7 +14,7 @@
   --ink: #e9e6e0;
   --ink-dim: #8b8680;
   --line: #2a2724;
-  --accent: #7c4dc4;
+  --accent: #3d2955;
   --accent-bright: #b98bf0;
   --section-h: clamp(620px, 100vh, 960px);
 }
@@ -178,7 +178,7 @@ nav ul li a.active{ color: var(--accent-bright); }
 
 .hero{
   position: relative;
-  min-height: var(--section-h);
+  height: 100vh;
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -191,7 +191,7 @@ nav ul li a.active{ color: var(--accent-bright); }
     var(--bg);
 }
 
-.hero-bg{
+.img-placeholder.hero-bg{
   position: absolute;
   inset: 0;
 }
@@ -331,33 +331,43 @@ section.alt{ background: var(--bg); }
 }
 
 /* A slot with a real photo dropped in — solid border instead of the
-   dashed placeholder pattern, image cropped to fill the tile. */
+   dashed placeholder pattern. Photos are pre-cropped before being added,
+   so they're shown in full rather than cropped again to fill the tile. */
 .img-placeholder.has-photo{
   background: none;
   border-style: solid;
 }
+.img-placeholder picture{
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
 .img-placeholder img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 10%;
+  object-fit: contain;
 }
+
+/* The hero photo is a full-bleed background, not a bordered tile — it
+   should fill the section edge to edge instead of showing whole/boxed.
+   contain (not cover) guarantees the full width is always visible; any
+   leftover space is pushed to the top by bottom-anchoring the photo. */
+.img-placeholder.hero-bg.has-photo{ border: none; }
+.img-placeholder.hero-bg img{ object-fit: contain; object-position: center bottom; }
 
 /* ---------- PHOTOS ---------- */
 
 .photos-grid{
   display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 140px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 320px;
   gap: 12px;
 }
-.photos-grid .img-placeholder:nth-child(1){ grid-column: span 2; grid-row: span 2; }
-.photos-grid .img-placeholder:nth-child(4){ grid-column: span 2; }
 
 @media (max-width: 800px){
-  .photos-grid{ grid-template-columns: repeat(2, 1fr); }
-  .photos-grid .img-placeholder:nth-child(1){ grid-column: span 2; }
-  .photos-grid .img-placeholder:nth-child(4){ grid-column: span 1; }
+  .photos-grid{ grid-auto-rows: 220px; }
 }
 
 /* ---------- BIO ---------- */
@@ -389,6 +399,26 @@ section.alt{ background: var(--bg); }
   border-bottom: 1px solid var(--line);
 }
 .influences li:last-child{ border-bottom:none; }
+
+.members-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 12px;
+  margin-top: 56px;
+}
+.member-card .img-placeholder{ height: 320px; }
+.member-info{ margin-top: 14px; }
+.member-name{
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.member-instrument{ margin-top: 4px; text-transform: uppercase; }
+
+@media (max-width: 800px){
+  .member-card .img-placeholder{ height: 220px; }
+}
 
 /* ---------- MUSIC / SHOWS (empty state) ---------- */
 

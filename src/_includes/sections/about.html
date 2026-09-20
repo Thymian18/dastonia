@@ -18,5 +18,18 @@
                 </ul>
             </div>
         </div>
+        <div class="members-grid">
+            {% for member in members %}
+            <div class="member-card">
+                <div class="img-placeholder has-photo">
+                    {% galleryImage member.photo, member.alt %}
+                </div>
+                <div class="member-info">
+                    <div class="member-name">{{ member.name }}</div>
+                    <div class="member-instrument label">{{ member.instrument }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
