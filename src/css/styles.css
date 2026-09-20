@@ -350,6 +350,20 @@ section.alt{ background: var(--bg); }
   object-fit: contain;
 }
 
+/* Gallery tiles are <button>s so they're clickable/keyboard-focusable —
+   strip the button UA styling back down to the plain tile look. */
+.photo-trigger{
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.photo-trigger:hover, .photo-trigger:focus-visible{
+  border-color: var(--accent-bright);
+}
+
 /* The hero photo is a full-bleed background, not a bordered tile — it
    should fill the section edge to edge instead of showing whole/boxed.
    contain (not cover) guarantees the full width is always visible; any
@@ -369,6 +383,44 @@ section.alt{ background: var(--bg); }
 @media (max-width: 800px){
   .photos-grid{ grid-auto-rows: 220px; }
 }
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(10,9,8,0.92);
+}
+.lightbox[hidden]{ display: none; }
+.lightbox img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--line);
+}
+.lightbox-close{
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.lightbox-close:hover, .lightbox-close:focus-visible{ border-color: var(--accent-bright); }
 
 /* ---------- BIO ---------- */
 
@@ -423,10 +475,6 @@ section.alt{ background: var(--bg); }
 /* ---------- MUSIC / SHOWS (empty state) ---------- */
 
 .empty-panel{
-  background: var(--bg-raised);
-  border: 1px solid var(--line);
-  border-left: none;
-  padding: 40px 40px 40px 0;
   max-width: 640px;
 }
 .empty-panel h3{ font-size: 1.3rem; margin-bottom: 12px; }
@@ -434,14 +482,6 @@ section.alt{ background: var(--bg); }
 .empty-panel .label{ margin-top: 20px; }
 
 /* ---------- PRESS / BOOKERS ---------- */
-
-.press{
-  background: var(--bg-raised);
-  border: 1px solid var(--line);
-  border-left: none;
-  padding: 56px 56px 56px 0;
-}
-@media (max-width: 700px){ .press{ padding: 36px 24px 36px 0; } }
 
 .press-grid{
   display:grid;
@@ -454,11 +494,12 @@ section.alt{ background: var(--bg); }
 .press p{ color: var(--ink-dim); max-width: 48ch; margin-bottom: 28px; }
 
 .press-photo{
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   width: 100%;
-  max-width: 220px;
+  max-width: 320px;
   margin-bottom: 24px;
 }
+.img-placeholder.has-photo.press-photo{ border: none; }
 
 .fact-list{ list-style:none; }
 .fact-list li{
