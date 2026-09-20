@@ -5,9 +5,9 @@
         </div>
         <div class="photos-grid">
             {% for photo in galleryPhotos %}
-            <div class="img-placeholder has-photo">
+            <button type="button" class="img-placeholder has-photo photo-trigger" aria-label="View photo larger">
                 {% galleryImage photo.src, photo.alt %}
-            </div>
+            </button>
             {% endfor %}
         </div>
     </div>
