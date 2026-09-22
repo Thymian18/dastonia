@@ -16,7 +16,11 @@
   --line: #2a2724;
   --accent: #3d2955;
   --accent-bright: #b98bf0;
-  --section-h: clamp(620px, 100vh, 960px);
+  --section-h: 720px;
+}
+
+@media (max-width: 720px){
+  :root{ --section-h: 480px; }
 }
 
 *{ box-sizing: border-box; margin:0; padding:0; }
@@ -36,12 +40,31 @@ img{ max-width:100%; display:block; }
 
 a{ color: inherit; text-decoration:none; }
 
-/* Content column — 80% of the viewport width (10% padding on each
-   side), so nav, hero, every section, and the footer all share the
-   exact same left edge at any window size, with no fixed cap. */
+/* Content column — a fixed max-width, centered, with fixed side
+   padding, so nav, hero, every section, and the footer all share the
+   exact same left edge at any window size. Deliberately px-based (not
+   %/vw) so the whole column shrinks or grows in lockstep with the
+   rest of the page's px-based spacing under browser zoom — a %/vw
+   container next to px-based internals causes the container to stay
+   pinned to the viewport edge while its contents shrink independently,
+   which reads as elements drifting apart when zooming out.
+
+   width:100% (not just max-width) matters: every section is a flex
+   column, and a flex item with auto side margins has stretch disabled
+   per spec, so it shrink-wraps to its own content instead of filling
+   the row — which is why sections with narrower content (the photo
+   grid, empty-state panels, the press/contact blocks) were centering a
+   narrower box than the bio section and drifting out of alignment with
+   it. An explicit width keeps every section's column the same size. */
 .wrap{
-  margin: 0;
-  padding: 0 10%;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 720px){
+  .wrap{ padding: 0 24px; }
 }
 
 h1,h2,h3{
@@ -178,13 +201,12 @@ nav ul li a.active{ color: var(--accent-bright); }
 
 .hero{
   position: relative;
-  height: 100vh;
+  min-height: 100dvh;
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 120px 0 100px;
+  padding: clamp(64px, 14vh, 120px) 0 clamp(48px, 10vh, 100px);
   scroll-snap-align: start;
-  overflow: hidden;
   background:
     radial-gradient(ellipse at 70% 20%, rgba(124,77,196,0.25), transparent 55%),
     radial-gradient(ellipse at 15% 85%, rgba(124,77,196,0.12), transparent 45%),
@@ -205,9 +227,6 @@ nav ul li a.active{ color: var(--accent-bright); }
 .hero-inner{
   position: relative;
   z-index: 1;
-  margin: 0;
-  width: 100%;
-  padding: 0 10%;
   text-align: center;
 }
 
@@ -303,7 +322,11 @@ section.alt{ background: var(--bg); }
   flex-wrap: wrap;
 }
 
-.section-head h2{ font-size: clamp(1.6rem, 4vw, 2.3rem); }
+.section-head h2{ font-size: 1.7rem; }
+
+@media (min-width: 720px){
+  .section-head h2{ font-size: 2.3rem; }
+}
 
 /* ---------- IMAGE PLACEHOLDERS ---------- */
 
@@ -459,6 +482,10 @@ section.alt{ background: var(--bg); }
   margin-top: 56px;
 }
 .member-card .img-placeholder{ height: 320px; }
+
+@media (max-width: 800px){
+  .member-card .img-placeholder{ height: 220px; }
+}
 .member-info{ margin-top: 14px; }
 .member-name{
   font-family: 'Unbounded', sans-serif;
@@ -467,10 +494,6 @@ section.alt{ background: var(--bg); }
   color: var(--ink);
 }
 .member-instrument{ margin-top: 4px; text-transform: uppercase; }
-
-@media (max-width: 800px){
-  .member-card .img-placeholder{ height: 220px; }
-}
 
 /* ---------- MUSIC / SHOWS (empty state) ---------- */
 
@@ -490,7 +513,11 @@ section.alt{ background: var(--bg); }
 }
 @media (max-width: 800px){ .press-grid{ grid-template-columns: 1fr; } }
 
-.press h2{ font-size: clamp(1.6rem, 4vw, 2.1rem); margin-bottom: 18px; }
+.press h2{ font-size: 1.7rem; margin-bottom: 18px; }
+
+@media (min-width: 720px){
+  .press h2{ font-size: 2.1rem; }
+}
 .press p{ color: var(--ink-dim); max-width: 48ch; margin-bottom: 28px; }
 
 .press-photo{
@@ -544,8 +571,12 @@ section.alt{ background: var(--bg); }
 .contact-email{
   font-family: 'Unbounded', sans-serif;
   font-weight: 500;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-size: 1.4rem;
   transition: color 0.15s ease;
+}
+
+@media (min-width: 720px){
+  .contact-email{ font-size: 1.8rem; }
 }
 .contact-email:hover{ color: var(--accent-bright); }
 
