@@ -221,7 +221,7 @@ nav ul li a.active{ color: var(--accent-bright); }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, var(--bg) 0%, rgba(10,9,8,0.4) 40%, var(--bg) 100%);
+  background: linear-gradient(to bottom, var(--bg) 0%, rgba(10,9,8,0.55) 22%, rgba(10,9,8,0.35) 45%, var(--bg) 100%);
 }
 
 .hero-inner{
@@ -233,11 +233,14 @@ nav ul li a.active{ color: var(--accent-bright); }
 .hero-wordmark{
   font-family: 'Syncopate', sans-serif;
   font-weight: 700;
-  font-size: clamp(3rem, 12vw, 8.5rem);
+  font-size: clamp(2.2rem, 8.5vw, 5.8rem);
   letter-spacing: 0.02em;
   line-height: 0.95;
   position: relative;
   color: var(--ink);
+  /* Belt-and-suspenders contrast: even if a face ever sits right behind a
+     letter, a soft dark glow keeps the wordmark readable. */
+  text-shadow: 0 4px 32px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.6);
 }
 
 .hero-wordmark span{ display:inline-block; position:relative; }
@@ -390,8 +393,25 @@ section.alt{ background: var(--bg); }
 /* The hero photo is a full-bleed background, not a bordered tile — it
    should fill the section edge to edge instead of showing whole/boxed.
    contain (not cover) guarantees the full width is always visible; any
-   leftover space is pushed to the top by bottom-anchoring the photo. */
+   leftover space is pushed to the top by bottom-anchoring the photo.
+
+   The photo's own aspect ratio (~2:1) is close to a lot of common
+   viewport ratios, so letting the picture size to 100% of the hero's
+   height let it fill almost the entire section on short/wide screens
+   (laptops, landscape tablets/phones) — pushing the group's faces up
+   into the wordmark. Capping the picture's height to a viewport-height
+   value, independent of however tall the hero itself ends up, keeps a
+   guaranteed gap above the photo for the title on every device. */
 .img-placeholder.hero-bg.has-photo{ border: none; }
+.img-placeholder.hero-bg picture{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  width: 100%;
+  height: clamp(280px, 60vh, 680px);
+}
 .img-placeholder.hero-bg img{ object-fit: contain; object-position: center bottom; }
 
 /* ---------- PHOTOS ---------- */
