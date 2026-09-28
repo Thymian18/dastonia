@@ -293,10 +293,12 @@ nav ul li a.active{ color: var(--accent-bright); }
 }
 .btn:hover{ border-color: var(--accent-bright); }
 .btn-solid{
-  background: var(--accent);
+  background: rgba(61, 41, 85, 0.55);
   border-color: var(--accent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
-.btn-solid:hover{ background: var(--accent-bright); border-color: var(--accent-bright); }
+.btn-solid:hover{ background: rgba(185, 139, 240, 0.55); border-color: var(--accent-bright); }
 
 /* ---------- SECTIONS ---------- */
 
