@@ -1,0 +1,34 @@
+<section id="bio">
+    <div class="wrap">
+        <div class="section-head">
+            <h2>The band</h2>
+        </div>
+        <div class="bio-grid">
+            <div class="bio-text">
+                <p>Dastonia makes heavy music with room to breathe. Crushing guitars and powerful drums meet atmospheric, spherical textures, and fragile, emotional passages sit right up against the weight. Modern elements run through every song, keeping the sound open and unpredictable.</p>
+                <p>Based in Bern, the band is writing and producing its first songs and preparing its debut live set for early 2027.</p>
+            </div>
+            <div class="influences">
+                <div class="label">Reference points</div>
+                <ul>
+                    <li>Spiritbox</li>
+                    <li>Currents</li>
+                    <li>Future Palace</li>
+                </ul>
+            </div>
+        </div>
+        <div class="members-grid">
+            {% for member in members %}
+            <div class="member-card">
+                <div class="img-placeholder has-photo">
+                    {% galleryImage member.photo, member.alt %}
+                </div>
+                <div class="member-info">
+                    <div class="member-name">{{ member.name }}</div>
+                    <div class="member-instrument label">{{ member.instrument }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
