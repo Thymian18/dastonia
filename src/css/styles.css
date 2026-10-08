@@ -222,6 +222,11 @@ nav ul li a.active{ color: var(--accent-bright); }
   inset: 0;
   background: linear-gradient(to bottom, var(--bg) 0%, rgba(10,9,8,0.55) 22%, rgba(10,9,8,0.35) 45%, var(--bg) 100%);
 }
+@media (max-width: 800px){
+  .hero-bg::after{
+    background: linear-gradient(to bottom, var(--bg) 0%, rgba(10,9,8,0.25) 18%, rgba(10,9,8,0.05) 45%, rgba(10,9,8,0.3) 80%, var(--bg) 100%);
+  }
+}
 
 .hero-inner{
   position: relative;
@@ -497,15 +502,14 @@ section.alt{ background: var(--bg); }
 
 .members-grid{
   display:grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px 12px;
   margin-top: 56px;
+  max-width: 640px;
 }
-.member-card .img-placeholder{ height: 320px; }
-
-@media (max-width: 800px){
-  .member-card .img-placeholder{ height: 220px; }
-}
+.member-card{ min-width: 0; }
+.member-card .img-placeholder{ height: auto; aspect-ratio: 3 / 4; }
+.member-card .img-placeholder img{ object-fit: cover; }
 .member-info{ margin-top: 14px; }
 .member-name{
   font-family: 'Unbounded', sans-serif;
