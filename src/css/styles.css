@@ -497,15 +497,14 @@ section.alt{ background: var(--bg); }
 
 .members-grid{
   display:grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px 12px;
   margin-top: 56px;
+  max-width: 640px;
 }
-.member-card .img-placeholder{ height: 320px; }
-
-@media (max-width: 800px){
-  .member-card .img-placeholder{ height: 220px; }
-}
+.member-card{ min-width: 0; }
+.member-card .img-placeholder{ height: auto; aspect-ratio: 3 / 4; }
+.member-card .img-placeholder img{ object-fit: cover; }
 .member-info{ margin-top: 14px; }
 .member-name{
   font-family: 'Unbounded', sans-serif;
