@@ -222,6 +222,11 @@ nav ul li a.active{ color: var(--accent-bright); }
   inset: 0;
   background: linear-gradient(to bottom, var(--bg) 0%, rgba(10,9,8,0.55) 22%, rgba(10,9,8,0.35) 45%, var(--bg) 100%);
 }
+@media (max-width: 800px){
+  .hero-bg::after{
+    background: linear-gradient(to bottom, var(--bg) 0%, rgba(10,9,8,0.25) 18%, rgba(10,9,8,0.05) 45%, rgba(10,9,8,0.3) 80%, var(--bg) 100%);
+  }
+}
 
 .hero-inner{
   position: relative;
