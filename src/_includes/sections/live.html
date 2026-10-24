@@ -3,9 +3,37 @@
         <div class="section-head">
             <h2>Shows</h2>
         </div>
+        {% if shows.size > 0 %}
+        <table class="shows-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Event</th>
+                    <th>Venue</th>
+                    <th>City</th>
+                    <th>Link</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for show in shows %}
+                <tr>
+                    <td data-label="Date">{{ show.date }}</td>
+                    <td data-label="Time">{{ show.time }}</td>
+                    <td data-label="Event">{{ show.event }}</td>
+                    <td data-label="Venue">{{ show.venue }}</td>
+                    <td data-label="City">{{ show.city }}</td>
+                    <td data-label="Link">{% if show.link %}<a href="{{ show.link }}" target="_blank" rel="noopener">Link</a>{% endif %}</td>
+                    <td data-label="Note">{{ show.note }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
         <div class="empty-panel">
-            <h3>Live</h3>
-            <p>Dastonia are preparing their first live shows and are open for bookings. Dates will be listed here as soon as they're confirmed.</p>
+            <p>{{ noShows.text }}</p>
         </div>
+        {% endif %}
     </div>
 </section>
