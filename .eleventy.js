@@ -8,6 +8,8 @@ module.exports = function(eleventyConfig) {
     // Rebuild in --serve mode when photos are added/removed, even though
     // src/photos isn't passthrough-copied (eleventy-img handles its output).
     eleventyConfig.addWatchTarget("src/photos");
+    // shows.json feeds src/_data/shows.js, which lives outside the input dir.
+    eleventyConfig.addWatchTarget("shows.json");
 
     // Turns a source path into the responsive <picture> markup for a
     // gallery photo. Drop a new file in src/photos/ and this generates
